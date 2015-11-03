@@ -1,3 +1,4 @@
+package com.CoverMe.sections;
 import java.util.ArrayList;
 
 public interface Section {

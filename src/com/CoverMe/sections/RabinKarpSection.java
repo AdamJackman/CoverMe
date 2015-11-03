@@ -1,5 +1,8 @@
+package com.CoverMe.sections;
 import java.util.ArrayList;
 import java.util.Map;
+
+import com.HTMLSearcher.main.HTMLSearcher;
 
 
 abstract class RabinKarpSection implements Section {
@@ -10,11 +13,17 @@ abstract class RabinKarpSection implements Section {
 	protected Map<String, String> searchMap; 
 	protected ArrayList<String> searchList;
 	
+	protected boolean include = false;
+	
 	@Override
 	public String getParagraph() {
+		
 		createSearchMap();
-		createSearchList();
+		createSearchList();		
 		ArrayList<String> matches = findMatches();
+		//Check for an include tag, any include tag is auto-included
+		if(include) matches.add(0, "include");
+		
 		//Create the text from the match values of the searchMap
 		StringBuilder sb = new StringBuilder();
 		for (int i=0; i<matches.size(); i++){

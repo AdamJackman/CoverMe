@@ -1,3 +1,7 @@
+package com.CoverMe.main;
+
+import com.CoverMe.sections.JSONSection;
+import com.CoverMe.sections.Section;
 
 public class CoverMe {
 	
@@ -6,8 +10,9 @@ public class CoverMe {
 	
 	public StringBuilder sb;	
 	
-	public String standardSections = "introduction,languages,web,database,mobile,version,ending,signature";
-	public String paragraphEnding = "\n\n";
+	public String standardSections = "introduction,languages,webtech,database,mobile,version,ending,signature";
+	public String personalizedSections = "introduction,personalized,languages,webtech,database,mobile,version,ending,signature";
+	public String paragraphEnding = "\n";
 	public String seperator = ",";
 	
 	public CoverMe(String target){
@@ -22,14 +27,20 @@ public class CoverMe {
 		sb = new StringBuilder();
 	}
 	
+	/**
+	 * Creates the 
+	 * @return
+	 */
 	public String buildLetter(){
 		String[] sections = inputSections.split(seperator);
 		for(int i=0; i<sections.length; i++){
 			//TODO: reflection? Factory?
 			Section sect = new JSONSection(sections[i], target);
 			String paragraph = sect.getParagraph();
-			sb.append(paragraph);
-			sb.append(paragraphEnding);			
+			if(!paragraph.equals("")){
+				sb.append(paragraph);
+				sb.append(paragraphEnding);	
+			}						
 		}
 		return sb.toString();
 	}

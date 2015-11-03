@@ -1,0 +1,3 @@
+{
+    "android ": "I have been working on Android development and am looking forward to more Android projects in the future. Currently I have created an Android app that is used to convert text into light encoding and will then send the light patterns using the phone's flashlight. This project used this functionality in combination with an arduino receiver so that you could send remote control signals to the arduino that could then perform actions on the connected computer or hardware based in the message received.\n"    
+}

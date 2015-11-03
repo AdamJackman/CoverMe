@@ -1,3 +1,4 @@
+package com.CoverMe.sections;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -15,7 +16,7 @@ public class JSONSection extends RabinKarpSection {
 	public JSONSection(String source, String target){
 		this.source = source + ".JSON";
 		this.target = target;
-		parser = new SourceJSON(source);
+		parser = new SourceJSON(this.source);
 	}
 	
 	/*
@@ -30,9 +31,23 @@ public class JSONSection extends RabinKarpSection {
 	@Override
 	public void createSearchList() {
 		searchList = new ArrayList<String>();
+		
+		//Safety check
+		if(searchMap == null){
+			return;
+		}
+		
 		for (Map.Entry<String, String> entry : searchMap.entrySet()) {
-		    searchList.add(entry.getKey());
-		}			
+			if(entry.getKey() != null){
+				searchList.add(entry.getKey());
+			}
+		}
+		
+		if(searchList.contains("include")){
+			searchList.remove("include");
+			include = true;
+		}
+		
 	}
 
 }
