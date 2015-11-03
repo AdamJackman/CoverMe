@@ -1,3 +1,8 @@
+import java.util.ArrayList;
+import java.util.Map;
+
+import com.CoverMe.parsers.SourceJSON;
+
 /**
  * An implementation of Section for JSON source files
  * @author Adam Jackman
@@ -5,10 +10,12 @@
  */
 public class JSONSection extends RabinKarpSection {
 
+	SourceJSON parser;
 
 	public JSONSection(String source, String target){
 		this.source = source + ".JSON";
 		this.target = target;
+		parser = new SourceJSON(source);
 	}
 	
 	/*
@@ -17,14 +24,15 @@ public class JSONSection extends RabinKarpSection {
 	 */
 	@Override
 	public void createSearchMap() {
-		// TODO Auto-generated method stub
-		
+		searchMap = parser.getJSONAsMap();		
 	}
 
 	@Override
 	public void createSearchList() {
-		// TODO Auto-generated method stub
-		
+		searchList = new ArrayList<String>();
+		for (Map.Entry<String, String> entry : searchMap.entrySet()) {
+		    searchList.add(entry.getKey());
+		}			
 	}
 
 }
